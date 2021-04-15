@@ -50,10 +50,16 @@ const App = () => {
     setTodoInput("");
   };
 
+  const onKeyUp = (e) => {
+    if (e.charCode === 13) {
+      addTodo(e);
+    }
+  };
+
   return (
     <Container fluid>
       <h1> Todo with Firebase</h1>
-      <Form>
+      <Form onsubmit="return false;">
         <FormGroup>
           <InputGroup>
             <Input
@@ -62,7 +68,11 @@ const App = () => {
               id="todo"
               placeholder="Enter a todo task"
               value={todoInput}
-              onChange={(e) => setTodoInput(e.target.value)}
+              onChange={(e) => {
+                e.preventDefault();
+                setTodoInput(e.target.value);
+              }}
+              onKeyPress={onKeyUp}
             />
             <InputGroupAddon addonType="prepend">
               <Button color="success" onClick={addTodo}>
