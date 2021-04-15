@@ -39,7 +39,7 @@ const App = () => {
   const addTodo = (e) => {
     e.preventDefault();
     if (todoInput === "") {
-      // do nothing
+      return alert("Enter some value");
     } else {
       db.collection("todos").add({
         inprogress: true,
@@ -50,16 +50,10 @@ const App = () => {
     setTodoInput("");
   };
 
-  const onKeyUp = (e) => {
-    if (e.charCode === 13) {
-      addTodo(e);
-    }
-  };
-
   return (
     <Container fluid>
       <h1> Todo with Firebase</h1>
-      <Form onsubmit="return false;">
+      <Form onSubmit={addTodo}>
         <FormGroup>
           <InputGroup>
             <Input
@@ -69,15 +63,11 @@ const App = () => {
               placeholder="Enter a todo task"
               value={todoInput}
               onChange={(e) => {
-                e.preventDefault();
                 setTodoInput(e.target.value);
               }}
-              onKeyPress={onKeyUp}
             />
             <InputGroupAddon addonType="prepend">
-              <Button color="success" onClick={addTodo}>
-                Add Todo
-              </Button>
+              <Button color="success">Add Todo</Button>
             </InputGroupAddon>
           </InputGroup>
         </FormGroup>
