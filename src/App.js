@@ -36,7 +36,7 @@ const App = () => {
     });
   };
 
-  function addTodo(e) {
+  const addTodo = (e) => {
     e.preventDefault();
     if (todoInput === "") {
       // do nothing
@@ -48,35 +48,31 @@ const App = () => {
       });
     }
     setTodoInput("");
-  }
+  };
 
   return (
     <Container fluid>
       <h1> Todo with Firebase</h1>
-      <div>
-        <Form>
-          <FormGroup>
-            <InputGroup>
-              <Input
-                type="text"
-                name="todo"
-                id="todo"
-                placeholder="Enter a todo task"
-                value={todoInput}
-                onChange={(e) => setTodoInput(e.target.value)}
-              />
-              <InputGroupAddon addonType="prepend">
-                <Button color="success" onClick={addTodo}>
-                  Add Todo
-                </Button>
-              </InputGroupAddon>
-            </InputGroup>
-          </FormGroup>
-        </Form>
-      </div>
-      <div style={{ marginBottom: "2px" }}>
-        <Todos todo={todos} />
-      </div>
+      <Form>
+        <FormGroup>
+          <InputGroup>
+            <Input
+              type="text"
+              name="todo"
+              id="todo"
+              placeholder="Enter a todo task"
+              value={todoInput}
+              onChange={(e) => setTodoInput(e.target.value)}
+            />
+            <InputGroupAddon addonType="prepend">
+              <Button color="success" onClick={addTodo}>
+                Add Todo
+              </Button>
+            </InputGroupAddon>
+          </InputGroup>
+        </FormGroup>
+      </Form>
+      <Todos todo={todos} />
     </Container>
   );
 };

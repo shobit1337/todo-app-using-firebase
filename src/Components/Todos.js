@@ -4,7 +4,6 @@ import { RiDeleteBin2Fill, RiTaskLine, RiTaskFill } from "react-icons/ri";
 import { db } from "../firebaseConfig";
 
 const Todos = ({ todo }) => {
-  //const [inprogress, setInprogress] = useState(false);
   function toggleInProgress(id, inprogress) {
     db.collection("todos").doc(id).update({
       inprogress: !inprogress,
